@@ -26,14 +26,14 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
           console.log(response.data.soma) 
           soma = response.data.soma.entrada.a + response.data.soma.entrada.b
           console.log(soma)
-          axios.post('https://tecweb-js.insper-comp.com.br/exercicio/soma', {
-            data:{"resposta" : soma},
-            headers:{
+          axios.post('https://tecweb-js.insper-comp.com.br/exercicio/soma',
+            {"resposta" : soma},
+            {headers:{
               'Content-Type' : 'application/json',
               'Accept' : 'application/json',
               'Authorization' : 'Bearer ' + t
-            }
-          }).then((response) => {console.log(response.data)})
+            }}
+          ).then((response) => {console.log(response)})
           //------------------------//
 
 
