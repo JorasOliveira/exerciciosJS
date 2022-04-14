@@ -33,9 +33,35 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
               'Accept' : 'application/json',
               'Authorization' : 'Bearer ' + t
             }}
-          ).then((response) => {console.log(response)})
+          ).then((response) => {//console.log(response.data)
+          })
+
           //------------------------//
+          console.log(response.data['tamanho-string'])
+          length = response.data['tamanho-string'].entrada.string.length
+          console.log(length)
+          axios.post('https://tecweb-js.insper-comp.com.br/exercicio/tamanho-string',
+            {"resposta" : length},
+            {headers:{
+              'Content-Type' : 'application/json',
+              'Accept' : 'application/json',
+              'Authorization' : 'Bearer ' + t
+            }}
+          ).then((response) => {//console.log(response.data)
+          })
 
-
+          //------------------------//
+          console.log(response.data['nome-do-usuario'])
+          console.log(response.data['nome-do-usuario'].entrada.email)
+          // console.log(length)
+          // axios.post('https://tecweb-js.insper-comp.com.br/exercicio/tamanho-string',
+          //   {"resposta" : length},
+          //   {headers:{
+          //     'Content-Type' : 'application/json',
+          //     'Accept' : 'application/json',
+          //     'Authorization' : 'Bearer ' + t
+          //   }}
+          // ).then((response) => {//console.log(response.data)
+          // })
         });
     });
