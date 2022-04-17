@@ -38,7 +38,7 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
           usuario = email.slice(0, email.search("@"))
           dict["nome-do-usuario"] = usuario
           //------------------------//
-          
+
 
 
 
@@ -54,5 +54,12 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
               }}
             ).then((response) => {console.log(response.data)})
           }
+          // axios.get('https://tecweb-js.insper-comp.com.br/?username=jorascco',
+          // {headers:{
+          //   'Content-Type' : 'application/json',
+          //   'Accept' : 'application/json',
+          //   'Authorization' : 'Bearer ' + t
+          //   }}
+          // ).then((response) => {console.log(response.data)})
         });
     });
