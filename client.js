@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { sign } = require("crypto");
+const { resolveSoa } = require("dns");
 axios
   .get("https://catfact.ninja/fact")
   .then((response) => console.log(response.data.fact));
@@ -129,14 +130,129 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
           dict['n-esimo-primo'] = prime
 
           //------------------------//
-          console.log(response.data['maior-prefixo-comum'])
+          // console.log(response.data['maior-prefixo-comum'])
 
-          let strings = response.data['maior-prefixo-comum'].entrada.strings
+          // let strings = response.data['maior-prefixo-comum'].entrada.strings
 
-          let prefixos = []
-          for (var i in strings){
-            console.log(strings[i])
-          }
+          // let prefixos = []
+          // for (var i in strings){
+          //   console.log(strings[i])
+          // }
+
+          //------------------------//
+          console.log(response.data['caca-ao-tesouro'])
+          let nxtUrl =  response.data['caca-ao-tesouro'].entrada.inicio
+          console.log(typeof nxtUrl)
+          let numero;
+
+          found = false
+          while (!found){
+            axios.get(nxtUrl, 
+              {headers:{
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json',
+                'Authorization' : 'Bearer ' + t
+              }}).then((response) => {
+                console.log( typeof response.data)
+                if ( (typeof response.data) === 'string' || response.data instanceof String){
+                  nxtUrl = response.data
+                  console.log(nxtUrl)
+                }
+                else{
+                  numero = response.data
+                  console.log(numero)
+                  found = true
+                }
+              })
+            }
+
+
+          // axios.get(nxtUrl,
+          //   {headers:{
+          //       'Content-Type' : 'application/json',
+          //       'Accept' : 'application/json',
+          //       'Authorization' : 'Bearer ' + t
+          //       }}).then((response) => {
+          //         axios.get(response.data,
+          //           {headers:{
+          //             'Content-Type' : 'application/json',
+          //             'Accept' : 'application/json',
+          //             'Authorization' : 'Bearer ' + t
+          //             }}).then((response) => {
+          //               axios.get(response.data,
+          //                 {headers:{
+          //                   'Content-Type' : 'application/json',
+          //                   'Accept' : 'application/json',
+          //                   'Authorization' : 'Bearer ' + t
+          //                   }}).then((response) => {
+          //                     axios.get(response.data,
+          //                       {headers:{
+          //                         'Content-Type' : 'application/json',
+          //                         'Accept' : 'application/json',
+          //                         'Authorization' : 'Bearer ' + t
+          //                         }}).then((response) => {
+          //                           axios.get(response.data,
+          //                             {headers:{
+          //                               'Content-Type' : 'application/json',
+          //                               'Accept' : 'application/json',
+          //                               'Authorization' : 'Bearer ' + t
+          //                               }}).then((response) => {
+          //                                 axios.get(response.data,
+          //                                   {headers:{
+          //                                     'Content-Type' : 'application/json',
+          //                                     'Accept' : 'application/json',
+          //                                     'Authorization' : 'Bearer ' + t
+          //                                     }}).then((response) => {
+          //                                       axios.get(response.data,
+          //                                         {headers:{
+          //                                           'Content-Type' : 'application/json',
+          //                                           'Accept' : 'application/json',
+          //                                           'Authorization' : 'Bearer ' + t
+          //                                           }}).then((response) => {
+          //                                             // console.log(response.data)
+          //                                             axios.get(response.data,
+          //                                               {headers:{
+          //                                                 'Content-Type' : 'application/json',
+          //                                                 'Accept' : 'application/json',
+          //                                                 'Authorization' : 'Bearer ' + t
+          //                                                 }}).then((response) => {
+          //                                                   axios.get(response.data,
+          //                                                     {headers:{
+          //                                                       'Content-Type' : 'application/json',
+          //                                                       'Accept' : 'application/json',
+          //                                                       'Authorization' : 'Bearer ' + t
+          //                                                       }}).then((response) => {
+          //                                                         axios.get(response.data,
+          //                                                           {headers:{
+          //                                                             'Content-Type' : 'application/json',
+          //                                                             'Accept' : 'application/json',
+          //                                                             'Authorization' : 'Bearer ' + t
+          //                                                             }}).then((response) => {
+          //                                                               console.log(response.data)
+          //                                                               dict['caca-ao-tesouro'] = response.data
+
+
+          //                                                               for (const [key, value] of Object.entries(dict)) {
+          //                                                                 axios.post('https://tecweb-js.insper-comp.com.br/exercicio/' + key,
+          //                                                                 {"resposta" : value},
+          //                                                                 {headers:{
+          //                                                                   'Content-Type' : 'application/json',
+          //                                                                   'Accept' : 'application/json',
+          //                                                                   'Authorization' : 'Bearer ' + t
+          //                                                                   }}
+          //                                                                 ).then((response) => {console.log(response.data)})
+          //                                                               }
+                        
+          //                                                             });
+          //                                                       });
+          //                                                 });
+          //                                           });
+          //                                     });
+                            //             });
+                            //       });
+                            // });
+                //       });
+                // });
 
 
           //------------ENVIANDO------------//
