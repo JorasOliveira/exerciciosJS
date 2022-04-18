@@ -13,7 +13,7 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
       'Accept' : 'application/json'
       } 
   }).then((response) => {t = response.data.accessToken 
-    console.log(t)
+    //console.log(t)
         axios.get('https://tecweb-js.insper-comp.com.br/exercicio ',{
           headers:{
             'Content-Type' : 'application/json',
@@ -36,7 +36,6 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
           //------------------------//
 
           let email = (response.data['nome-do-usuario'].entrada.email)
-
           usuario = email.slice(0, email.search("@"))
           dict["nome-do-usuario"] = usuario
 
@@ -78,10 +77,11 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
 
           //------------------------//
 
-          valores = response.data.mru.entrada
+          let valores = response.data.mru.entrada
           let s0 = valores.s0
           let vel = valores.v
           let time = valores.t
+
           let sf = s0 + (vel*time)
           dict['mru'] = sf
 
@@ -93,11 +93,50 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
           for (i = str.length - 1; i >= 0;  i--){
             rts += str[i]
           }
-    
           dict['inverte-string'] = rts
 
           //------------------------//
 
+          let val = response.data['soma-valores'].entrada.objeto
+
+          let total = 0
+          for (var k in val){
+            total += val[k]
+          }
+          dict['soma-valores'] = total
+
+          //------------------------//
+
+          n = response.data['n-esimo-primo'].entrada.n
+
+          let counter = 0
+          let prime = 0
+          let j = 0
+          let found = false
+          while(!found){
+            if (j != 0){
+  
+              if ( (j % 2 == 0) && (j % 3 == 0) && (j % 7 == 0) && (j % 9 == 0) && (j % 11 == 0) ) {
+                prime = j
+                counter++
+              }
+            }
+            if (counter == n) {
+              found = true
+            }
+            j++
+          }
+          dict['n-esimo-primo'] = prime
+
+          //------------------------//
+          console.log(response.data['maior-prefixo-comum'])
+
+          let strings = response.data['maior-prefixo-comum'].entrada.strings
+
+          let prefixos = []
+          for (var i in strings){
+            console.log(strings[i])
+          }
 
 
           //------------ENVIANDO------------//
