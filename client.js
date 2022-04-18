@@ -23,29 +23,28 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
         }).then((response) => {
           let dict = {}; 
 
-          //------------------------//
-          // console.log(response.data.soma) 
+          //------------RESPONDENDO------------//
 
           let soma = response.data.soma.entrada.a + response.data.soma.entrada.b
           dict["soma"] = soma
+
           //------------------------//
-          // console.log(response.data['tamanho-string'])
 
           let length = response.data['tamanho-string'].entrada.string.length
           dict["tamanho-string"] = length
+
           //------------------------//
-          // console.log(response.data['nome-do-usuario'])
+
           let email = (response.data['nome-do-usuario'].entrada.email)
 
           usuario = email.slice(0, email.search("@"))
           dict["nome-do-usuario"] = usuario
+
           //------------------------//
-          // console.log(response.data['jaca-wars'])
 
           let v = response.data['jaca-wars'].entrada.v
           let theta = response.data['jaca-wars'].entrada.theta
 
-          //v^2 sen(2 theta) / g,
           let jaca = (Math.pow(v, 2) * Math.sign(2*theta)/9.8)
     
           let strike = 0
@@ -56,8 +55,8 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
             strike = -1
           }
           dict['jaca-wars'] = strike
+
           //------------------------//
-          //console.log(response.data['ano-bissexto'])
 
           let ano = response.data['ano-bissexto'].entrada.ano
           let bissexto
@@ -68,21 +67,39 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
             bissexto = false
           }
           dict['ano-bissexto'] = bissexto
+
           //------------------------//
-          //console.log(response.data['volume-da-pizza'])
 
           let r = response.data['volume-da-pizza'].entrada.z 
           let h = response.data['volume-da-pizza'].entrada.a 
 
           let volume = Math.round(Math.PI*Math.pow(r, 2)*h)
           dict['volume-da-pizza'] = volume
+
           //------------------------//
-          console.log(response.data.mru)
+
+          valores = response.data.mru.entrada
+          let s0 = valores.s0
+          let vel = valores.v
+          let time = valores.t
+          let sf = s0 + (vel*time)
+          dict['mru'] = sf
+
+          //------------------------//
+
+          let str = response.data['inverte-string'].entrada.string
+
+          let rts = ""
+          for (i = str.length - 1; i >= 0;  i--){
+            rts += str[i]
+          }
+    
+          dict['inverte-string'] = rts
 
 
 
 
-
+          //------------ENVIANDO------------//
           for (const [key, value] of Object.entries(dict)) {
             axios.post('https://tecweb-js.insper-comp.com.br/exercicio/' + key,
             {"resposta" : value},
@@ -93,6 +110,7 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
               }}
             ).then((response) => {console.log(response.data)})
           }
+
           // axios.get('https://tecweb-js.insper-comp.com.br/?username=jorascco',
           // {headers:{
           //   'Content-Type' : 'application/json',
