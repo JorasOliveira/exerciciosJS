@@ -59,6 +59,8 @@ data: {
       entrada: [Object],
       pontuacao: 0.5
     },
+
+    
     'maior-prefixo-comum': {
       titulo: 'Maior prefixo comum',
       descricao: "Qual é o maior prefixo (qualquer conjunto de caracteres que começa no começo da string) que ocorre em pelo menos duas strings do array de entrada? Exemplo, para a entrada ['casa', 'casamento', 'casamos', 'banana'] a resposta esperada é 'casam'. Para a entrada ['abacaxi', 'banana'], a resposta esperada é '' (string vazia).",
