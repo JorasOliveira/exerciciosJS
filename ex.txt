@@ -60,25 +60,31 @@ data: {
       pontuacao: 0.5
     },
 
-    
+
     'maior-prefixo-comum': {
       titulo: 'Maior prefixo comum',
       descricao: "Qual é o maior prefixo (qualquer conjunto de caracteres que começa no começo da string) que ocorre em pelo menos duas strings do array de entrada? Exemplo, para a entrada ['casa', 'casamento', 'casamos', 'banana'] a resposta esperada é 'casam'. Para a entrada ['abacaxi', 'banana'], a resposta esperada é '' (string vazia).",
       entrada: [Object],
       pontuacao: 0.5
     },
+
+    
     'soma-segundo-maior-e-menor-numeros': {
       titulo: 'Soma do segundo maior e menor números',
       descricao: 'Qual é a soma do segundo maior número do array com o segundo menor?',
       entrada: [Object],
       pontuacao: 0.5
     },
+    
+
     'conta-palindromos': {
       titulo: 'Conta palíndromos',
       descricao: 'Quantos palíndromos existem neste array?',
       entrada: [Object],
       pontuacao: 0.5
     },
+
+
     'soma-de-strings-de-ints': {
       titulo: 'Soma de strings de ints',
       descricao: 'Calcule a soma dos valores inteiros representados por strings usando os métodos map e reduce.',

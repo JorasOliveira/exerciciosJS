@@ -109,21 +109,23 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
           let jaca = (Math.pow(v, 2) * Math.sin(2*theta)/9.8)
     
           let strike
-          if (jaca >= 102){
+          if (jaca > 102){
             strike = 1
           }
-          else if (jaca < 102 || java > 98){
+          else if (jaca >= 97 || jaca <= 102){
             strike = 0
           }
           else{
             strike = -1
           }
+          console.log(jaca)
+          console.log(strike)
           dict['jaca-wars'] = strike
 
           //------------------------//
           let ano = response.data['ano-bissexto'].entrada.ano
           let bissexto
-          if ( (ano % 400 == 0) && (ano % 100 != 0) && (ano % 4 == 0) ){
+          if ( (ano % 4 == 0) && (ano % 100 != 0) || (ano % 400 == 0) ){
             bissexto = true
           }
           else{
@@ -166,23 +168,34 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
           dict['soma-valores'] = total
 
           //------------------------//
-          n = response.data['n-esimo-primo'].entrada.n
+         let n = response.data['n-esimo-primo'].entrada.n
 
           let counter = 0
           let prime = 0
-          let j = 1
+          let isPrime = true
+          let j = 2
           let found = false
+
           while(!found){
 
-            if ( (j % 2 == 0) || (j % 3 == 0) || (j % 7 == 0) || (j % 9 == 0) || (j % 11 == 0) ){
+            for (i = 2; i < j; i++){
+              if (j % i == 0){
+                isPrime = false
+                break
+              }
+              else{
+                isPrime = true
+              }
+            }
+
+            if(isPrime){
               prime = j
               counter++
             }
-
-            if (counter == n) {
+            if (counter >= n) {
               found = true
+              break
             }
-
             j++
           }
           dict['n-esimo-primo'] = prime
@@ -210,6 +223,8 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
 
           dict['soma-segundo-maior-e-menor-numeros'] = soma
 
+          //------------------------//
+          console.log(response.data['conta-palindromos'])
 
           //------------------------//
           let strings = response.data['soma-de-strings-de-ints'].entrada.strings
