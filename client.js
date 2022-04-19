@@ -224,7 +224,6 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
           dict['soma-segundo-maior-e-menor-numeros'] = soma
 
           //------------------------//
-
           let palavras = response.data['conta-palindromos'].entrada.palavras
           let conta = 0
 
@@ -238,8 +237,8 @@ axios.post('https://tecweb-js.insper-comp.com.br/token ',{
             if (rts === p){
               conta++
             }
-          }
 
+          }
           dict['conta-palindromos'] = conta
 
           //------------------------//
